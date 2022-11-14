@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from flask import Flask
-from web3 import w3
+from web3 import Web3, HTTPProvider
 
 app = Flask(__name__)
 
@@ -42,6 +42,8 @@ def getMarketAddresses():
         }
     ]
 
+    provider_uri = "https://goerli.infura.io/v3/d92ab3de97fc461f923c45b1edfc1685"
+    w3 = Web3(HTTPProvider())
     registry = w3.eth.contract(address=registry_address, abi=registry_abi)
     count = registry.functions.marketCount().call()
 
